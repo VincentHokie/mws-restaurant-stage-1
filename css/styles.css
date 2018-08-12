@@ -151,12 +151,12 @@ nav h1 a {
 .filter-options {
   max-width: 100%;
   height: auto;
-  background-color: #3397DB;
+  border-bottom: 2px solid rgb(241,130,0,0.4);
   align-items: center;
 }
 
 .filter-options h2 {
-  color: white;
+  color: #000;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1;
@@ -165,7 +165,8 @@ nav h1 a {
 }
 
 .filter-options select {
-  background-color: white;
+  background-color: #f18200;
+  color: #fff;
   border: 1px solid #fff;
   font-family: Arial,sans-serif;
   font-size: 11pt;
