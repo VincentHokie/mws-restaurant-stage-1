@@ -69,6 +69,10 @@ section {
 	display: block;
 }
 
+figure {
+  margin: 0;
+}
+
 #maincontent {
   background-color: #f3f3f3;
 }
@@ -184,7 +188,7 @@ nav h1 a {
 #restaurants-list li {
   background-color: #fff;
   font-family: Arial,sans-serif;
-  margin: 15px;
+  margin: 15px auto;
   min-height: 380px;
   padding: 5px;
   text-align: left;

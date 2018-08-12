@@ -158,10 +158,41 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
 
+  /*
+  * create responsive image markup i.e.
+  * 
+  * <figure>
+  *   <picture>
+  *     <source media="" srcset="" />
+  *     <source media="" srcset="" />
+  *     <img src="" alt="" >
+  *   </picture>
+  * </figure>
+  * 
+  * */
+  const figure = document.createElement('figure');
+  const picture = document.createElement('picture');
+  const src800 = document.createElement('source');
+  const src500 = document.createElement('source');
   const image = document.createElement('img');
+  let imgUrl = DBHelper.imageUrlForRestaurant(restaurant);
+
+  src800.media = "(min-width: 800px)";
+  src800.srcset = imgUrl.replace(".jpg", "-800.jpg");
+
+  src500.media = "(min-width: 500px)";
+  src500.srcset = imgUrl.replace(".jpg", "-500.jpg");
+
   image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  li.append(image);
+  image.src = imgUrl.replace(".jpg", "-300.jpg");
+
+  picture.append(src800);
+  picture.append(src500);
+  picture.append(image);
+
+  figure.append(picture);
+
+  li.append(figure);
 
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
