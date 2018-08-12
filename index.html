@@ -23,12 +23,12 @@
       <div class="filter-options">
         <h2>Filter Results</h2>
 
-        <label for="neighborhoods-select" hidden>Neighborhood</label>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <label id="neighborhoods-select-label" hidden>Neighborhood</label>
+        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()" aria-labelledby="neighborhoods-select-label">
           <option value="all">All Neighborhoods</option>
         </select>
-        <label for="cuisines-select" hidden>Cuisine</label>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+        <label id="cuisines-select-label" hidden>Cuisine</label>
+        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()" aria-labelledby="cuisines-select-label">
           <option value="all">All Cuisines</option>
         </select>
       </div>
