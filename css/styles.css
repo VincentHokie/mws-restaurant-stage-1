@@ -79,7 +79,7 @@ figure {
 
 #footer {
   background-color: #444;
-  color: #aaa;
+  color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
@@ -222,7 +222,7 @@ nav h1 a {
 }
 
 #restaurants-list article a {
-  background-color: orange;
+  background-color: #f18200;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
@@ -352,6 +352,10 @@ nav h1 a {
   flex-wrap: wrap;
 }
 
+/* ====================== Leaflet styles ====================== */
+div.leaflet-bottom.leaflet-right {
+  background-color: #fff;
+}
 
 /* ====================== Media queries ====================== */
 
