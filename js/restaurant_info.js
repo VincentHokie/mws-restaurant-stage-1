@@ -85,6 +85,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const address = document.getElementById('restaurant-address');
   address.innerHTML = restaurant.address;
+  address.tabIndex = 0;
 
   const image = document.getElementById('restaurant-img');
   let figure = HTMLHelper.responsiveFigureElement('', restaurant);
@@ -106,10 +107,17 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
 fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
+  
   const hours = document.getElementById('restaurant-hours');
+  const title = document.createElement('h2');
+  title.innerHTML = 'Opening Hours';
+  title.tabIndex = 0;
+  hours.appendChild(title);
+  
   for (let key in operatingHours) {
     const row = document.createElement('tr');
-
+    row.tabIndex = 0;
+    
     const day = document.createElement('td');
     day.innerHTML = key;
     row.appendChild(day);
@@ -129,6 +137,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
+  title.tabIndex = 0;
   container.appendChild(title);
 
   if (!reviews) {
@@ -137,35 +146,36 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     container.appendChild(noReviews);
     return;
   }
-  const ul = document.getElementById('reviews-list');
+  const div = document.getElementById('reviews-list');
   reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
+    div.appendChild(createReviewHTML(review));
   });
-  container.appendChild(ul);
+  container.appendChild(div);
 }
 
 /**
  * Create review HTML and add it to the webpage.
  */
 createReviewHTML = (review) => {
-  const li = document.createElement('li');
+  const article = document.createElement('article');
   const name = document.createElement('p');
-  name.innerHTML = review.name;
-  li.appendChild(name);
+  name.innerHTML = `${review.name},`;
+  article.appendChild(name);
 
   const date = document.createElement('p');
-  date.innerHTML = review.date;
-  li.appendChild(date);
+  date.innerHTML = `${review.date},`;
+  article.appendChild(date);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
-  li.appendChild(rating);
+  rating.innerHTML = `Rating: ${review.rating},`;
+  article.appendChild(rating);
 
   const comments = document.createElement('p');
-  comments.innerHTML = review.comments;
-  li.appendChild(comments);
+  comments.innerHTML = `${review.comments}.`;
+  article.appendChild(comments);
 
-  return li;
+  article.tabIndex = 0;
+  return article;
 }
 
 /**
