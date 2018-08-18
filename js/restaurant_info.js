@@ -123,7 +123,12 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     row.appendChild(day);
 
     const time = document.createElement('td');
-    time.innerHTML = operatingHours[key];
+
+    /* 
+    * change all hyphens to read 'to' for the benefit
+    * of screenreaders and the users that need them
+    */
+    time.innerHTML = operatingHours[key].replace(/-/g, 'to');
     row.appendChild(time);
 
     hours.appendChild(row);
