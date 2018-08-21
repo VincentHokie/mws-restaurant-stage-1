@@ -1,0 +1,14 @@
+{
+  "name": "Restaurant Reviews",
+  "short_name": "2R",
+  "description": "Find out what people think of your next spot.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#f18200",
+  "icons": [{
+    "src": "icon.jpeg",
+    "sizes": "256x256",
+    "type": "image/jpeg"
+  }]
+}

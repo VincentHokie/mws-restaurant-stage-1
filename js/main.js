@@ -23,16 +23,22 @@ const neighborhoodsSelect = document.getElementById("neighborhoods-select");
 /**
  * Register the sw
  */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-  .then((reg) => {
-      // registration worked
-      console.log('Registration succeeded. Scope is ' + reg.scope);
-  }).catch((error) => {
-      // registration failed
-      console.log('Registration failed with ' + error);
-  });
+export const registerSW = () => {
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+    .then((reg) => {
+        // registration worked
+        console.log('Registration succeeded. Scope is ' + reg.scope);
+    }).catch((error) => {
+        // registration failed
+        console.log('Registration failed with ' + error);
+    });
+  }
+
 }
+
+registerSW();
 
 
 /**

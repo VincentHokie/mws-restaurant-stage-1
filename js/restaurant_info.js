@@ -1,8 +1,11 @@
 import { responsiveFigureElement } from './htmlHelper'
 import { mapMarkerForRestaurant, fetchRestaurantById } from './dbhelper'
+import { registerSW } from './main'
 
 let restaurant;
 var newMap;
+
+registerSW();
 
 /**
  * Initialize map as soon as the page is loaded.
