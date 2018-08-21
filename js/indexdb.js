@@ -76,6 +76,27 @@ export const getRestaurants_indexdb = (request) => {
 
 
 /*
+    used to get a restaurant from indexDB
+*/
+export const getRestaurantsById_indexdb = (request, id) => {
+    
+    let db = null;
+    
+    request.onsuccess = (event) => {
+        db = event.target.result
+        console.log(db)
+        return db
+            .transaction("restaurants", "readwrite")
+            .objectStore("restaurants")
+            .get(id);
+    }
+
+    // if(!db) return false
+
+}
+
+
+/*
     update the restaurants (ideally) in the case when the hash of all
     the restaurants retrieved is different. The hash is stored in indexDB
     under a different object store.
