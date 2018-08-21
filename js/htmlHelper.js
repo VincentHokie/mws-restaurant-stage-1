@@ -153,7 +153,10 @@ export const fillCuisinesHTML = (restaurants) => {
  */
 export const fillRestaurantsHTML = (restaurants) => {
   const ul = document.getElementById('restaurants-list');
-  ul.innerHTML = "";
+  if(ul)
+    ul.innerHTML = ""
+  else
+    return null;
 
   fillCuisinesHTML(restaurants);
   fillNeighborhoodsHTML(restaurants);

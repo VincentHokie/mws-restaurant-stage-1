@@ -43,7 +43,7 @@ request.onerror = (event) => {
      function will be triggered and a new action could be run
      under the switch statement
 */
-export const indexDBSetup = (request) => {
+export const indexDBSetup = (request, main=true) => {
     
     request.onupgradeneeded = (event) => {
         let db = event.target.result;
@@ -56,8 +56,8 @@ export const indexDBSetup = (request) => {
             break;
         }
     };
-
-    fetchRestaurants(); //api call for restaurants
+    if(main)
+        fetchRestaurants(); //api call for restaurants
 }
 
 /*
