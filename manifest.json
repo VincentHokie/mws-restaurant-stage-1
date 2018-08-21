@@ -6,8 +6,34 @@
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#f18200",
-  "icons": [{
+  "icons": [
+  {
     "src": "icon.jpg",
+    "sizes": "48x48",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "72x72",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "96x96",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "144x144",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "168x168",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "192x192",
+    "type": "image/jpeg"
+  }, {
+    "src": "icon.jpg",
+    "sizes": "512x512",
     "type": "image/jpeg"
   }]
 }
