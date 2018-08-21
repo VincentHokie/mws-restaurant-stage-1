@@ -14,7 +14,8 @@ const expectedCaches = ['static-v1'];
           '/index.html',
           '/restaurant.html',
           '/css/styles.css',
-          '/js/main.bundle.js',
+          '/js/mainBundle.js',
+          '/js/detailBundle.js',
         ]);
       }).catch((error) => {
         console.log("error", error)

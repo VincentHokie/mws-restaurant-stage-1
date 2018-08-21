@@ -6,9 +6,10 @@ const parentDir = path.join(__dirname, '../');
 module.exports = {
   // define js entry point i.e. what will be loaded by our base template directly
   watch: true,
-  entry: [
-    path.join(parentDir, 'js', 'main.js'),
-  ],
+  entry: {
+    mainBundle: path.join(parentDir, 'js', 'main.js'),
+    detailBundle: path.join(parentDir, 'js', 'restaurant_info.js'),
+  },
   module: {
     rules: [
     {
@@ -24,10 +25,9 @@ module.exports = {
       ],
     }],
   },
-  // defines where all our js will be bundled for use by react
+  // defines where all our js will be bundled for use
   output: {
     path: path.join(parentDir, 'js'),
-    filename: 'main.bundle.js',
     publicPath: parentDir
   },
   devServer: {
