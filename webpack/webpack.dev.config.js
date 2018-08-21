@@ -1,0 +1,37 @@
+const webpack = require('webpack');
+const path = require('path');
+
+const parentDir = path.join(__dirname, '../');
+
+module.exports = {
+  // define js entry point i.e. what will be loaded by our base template directly
+  watch: true,
+  entry: [
+    path.join(parentDir, 'js', 'main.js'),
+  ],
+  module: {
+    rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader', // turn all .js and jsx files that are not in node_modules into the more compatible es5
+    }, {
+      test: /\.(css|scss)$/,
+      loaders: [
+        'style-loader', // creates style nodes from JS strings
+        'css-loader', // translates CSS into CommonJS
+        'sass-loader', // compiles Sass to CSS
+      ],
+    }],
+  },
+  // defines where all our js will be bundled for use by react
+  output: {
+    path: path.join(parentDir, 'js'),
+    filename: 'main.bundle.js',
+    publicPath: parentDir
+  },
+  devServer: {
+    contentBase: parentDir,
+    historyApiFallback: true
+  }
+};
