@@ -1,4 +1,5 @@
 import { imageUrlForRestaurant, urlForRestaurant, mapMarkerForRestaurant, getRestaurants_indexdb } from './dbhelper'
+var markers = []
 
 /**
  * Common html helper functions.
@@ -59,12 +60,12 @@ export const responsiveFigureElement = (className, restaurant) => {
 const addMarkersToMap = (restaurants) => {
   restaurants.forEach(restaurant => {
     // // Add marker to the map
-    // const marker = mapMarkerForRestaurant(restaurant, newMap);
-    // marker.on("click", onClick);
-    // function onClick() {
-    //   window.location.href = marker.options.url;
-    // }
-    // self.markers.push(marker);
+    const marker = mapMarkerForRestaurant(restaurant, self.newMap);
+    marker.on("click", onClick);
+    function onClick() {
+      window.location.href = marker.options.url;
+    }
+    markers.push(marker);
   });
 
 }

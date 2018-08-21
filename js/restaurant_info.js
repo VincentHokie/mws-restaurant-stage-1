@@ -7,7 +7,7 @@ import { registerSW } from './main'
 import L from 'leaflet'
 
 let restaurant;
-var newMap;
+var newDetailMap;
 
 registerSW();
 
@@ -45,7 +45,7 @@ const fetchRestaurantFromURL = (request, callback) => {
   const id = getParameterByName('id');
   if (!id) { // no id found in URL
     error = 'No restaurant id in URL'
-    // callback(error, null);
+    callback(error, null);
   } 
   
   let restaurant = getRestaurantsById_indexdb(request, id);
@@ -60,7 +60,7 @@ const fetchRestaurantFromURL = (request, callback) => {
       return;
     }
     fillRestaurantHTML(restaurant);
-    // callback(null, restaurant)
+    callback(null, restaurant)
   });
 }
 
@@ -68,25 +68,28 @@ const fetchRestaurantFromURL = (request, callback) => {
  * Initialize leaflet map
  */
 const initMap = () => {
+  
   fetchRestaurantFromURL(request, (error, restaurant) => {
+    
     if (error) { // Got an error!
       console.error(error);
     } else {
-      // self.newMap = L.map('map', {
-      //   center: [restaurant.latlng.lat, restaurant.latlng.lng],
-      //   zoom: 16,
-      //   scrollWheelZoom: false
-      // });
-      // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-      //   mapboxToken: 'pk.eyJ1IjoidmluY2UxMjMiLCJhIjoiY2prcXN3NXN1MW9rbjNwcXJueHpyc2dmZSJ9.YsyXvOQkxa4064Cr4-OiRg',
-      //   maxZoom: 18,
-      //   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-      //     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-      //     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      //   id: 'mapbox.streets'    
-      // }).addTo(newMap);
+      if(newMap) newMap.remove();
+      newDetailMap = L.map('map', {
+        center: [restaurant.latlng.lat, restaurant.latlng.lng],
+        zoom: 16,
+        scrollWheelZoom: false
+      });
+      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
+        mapboxToken: 'pk.eyJ1IjoidmluY2UxMjMiLCJhIjoiY2prcXN3NXN1MW9rbjNwcXJueHpyc2dmZSJ9.YsyXvOQkxa4064Cr4-OiRg',
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox.streets'    
+      }).addTo(newDetailMap);
       fillBreadcrumb(restaurant);
-      // mapMarkerForRestaurant(restaurant, self.newMap);
+      mapMarkerForRestaurant(restaurant, newDetailMap);
     }
   });
 }  
