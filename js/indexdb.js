@@ -84,7 +84,6 @@ export const getRestaurantsById_indexdb = (request, id) => {
     
     request.onsuccess = (event) => {
         db = event.target.result
-        console.log(db)
         return db
             .transaction("restaurants", "readwrite")
             .objectStore("restaurants")
