@@ -40,18 +40,20 @@ const expectedCaches = ['static-v1'];
   });
 
   self.addEventListener('fetch', (event) => {
-    event.respondWith(
-      caches.match(event.request).then((resp) => {
-        return resp || fetch(event.request).then((response) => {
-          let responseClone = response.clone();
-          caches.open("static-v1").then((cache) => {
-            cache.put(event.request, responseClone);
+
+    if((event.request.url.indexOf('http') === 0))
+      event.respondWith(
+        caches.match(event.request).then((resp) => {
+          return resp || fetch(event.request).then((response) => {
+            let responseClone = response.clone();
+            caches.open("static-v1").then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+    
+            return response;
           });
-  
-          return response;
-        });
-      }).catch(() => {
-        return caches.match('/img/1.jpg');
-      })
-    );
+        }).catch(() => {
+          return caches.match('/img/1.jpg');
+        })
+      );
   });
