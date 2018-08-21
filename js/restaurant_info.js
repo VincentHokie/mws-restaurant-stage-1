@@ -1,3 +1,6 @@
+import { responsiveFigureElement } from './htmlHelper'
+import { mapMarkerForRestaurant, fetchRestaurantById } from './dbhelper'
+
 let restaurant;
 var newMap;
 
@@ -11,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 /**
  * Initialize leaflet map
  */
-initMap = () => {
+const initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
     if (error) { // Got an error!
       console.error(error);
@@ -30,7 +33,7 @@ initMap = () => {
         id: 'mapbox.streets'    
       }).addTo(newMap);
       fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
+      mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
 }  
@@ -46,7 +49,7 @@ initMap = () => {
         scrollwheel: false
       });
       fillBreadcrumb();
-      DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+      mapMarkerForRestaurant(self.restaurant, self.map);
     }
   });
 } */
@@ -54,7 +57,7 @@ initMap = () => {
 /**
  * Get current restaurant from page URL.
  */
-fetchRestaurantFromURL = (callback) => {
+const fetchRestaurantFromURL = (callback) => {
   if (self.restaurant) { // restaurant already fetched!
     callback(null, self.restaurant)
     return;
@@ -64,7 +67,7 @@ fetchRestaurantFromURL = (callback) => {
     error = 'No restaurant id in URL'
     callback(error, null);
   } else {
-    DBHelper.fetchRestaurantById(id, (error, restaurant) => {
+    fetchRestaurantById(id, (error, restaurant) => {
       self.restaurant = restaurant;
       if (!restaurant) {
         console.error(error);
@@ -79,7 +82,7 @@ fetchRestaurantFromURL = (callback) => {
 /**
  * Create restaurant HTML and add it to the webpage
  */
-fillRestaurantHTML = (restaurant = self.restaurant) => {
+const fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
   name.innerHTML = restaurant.name;
 
@@ -88,7 +91,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.tabIndex = 0;
 
   const image = document.getElementById('restaurant-img');
-  let figure = HTMLHelper.responsiveFigureElement('', restaurant);
+  let figure = responsiveFigureElement('', restaurant);
   figure.children[0].lastChild.id = 'restaurant-img';
   image.replaceWith(figure);
 
@@ -106,7 +109,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
 /**
  * Create restaurant operating hours HTML table and add it to the webpage.
  */
-fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
+const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   
   const hours = document.getElementById('restaurant-hours');
   const title = document.createElement('h2');
@@ -138,7 +141,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
@@ -161,7 +164,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 /**
  * Create review HTML and add it to the webpage.
  */
-createReviewHTML = (review) => {
+const createReviewHTML = (review) => {
   const article = document.createElement('article');
   const name = document.createElement('p');
   name.innerHTML = `${review.name},`;
@@ -186,7 +189,7 @@ createReviewHTML = (review) => {
 /**
  * Add restaurant name to the breadcrumb navigation menu
  */
-fillBreadcrumb = (restaurant=self.restaurant) => {
+const fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
@@ -196,7 +199,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
 /**
  * Get a parameter by name from page URL.
  */
-getParameterByName = (name, url) => {
+const getParameterByName = (name, url) => {
   if (!url)
     url = window.location.href;
   name = name.replace(/[\[\]]/g, '\\$&');
