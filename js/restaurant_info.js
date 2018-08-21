@@ -4,6 +4,7 @@ import {
   fetchRestaurantById } from './dbhelper'
 import { request, indexDBSetup, getRestaurantsById_indexdb } from './indexdb'
 import { registerSW } from './main'
+import L from 'leaflet'
 
 let restaurant;
 var newMap;

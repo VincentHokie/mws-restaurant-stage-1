@@ -1,6 +1,7 @@
 import { indexDBSetup, request } from './indexdb'
 import { fillRestaurantsHTML } from './htmlHelper'
 import { mapMarkerForRestaurant, filterRestaurantByCuisineAndNeighborhood } from './dbhelper'
+import L from 'leaflet'
 
 let restaurants,
   neighborhoods,

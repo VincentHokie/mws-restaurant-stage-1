@@ -1,4 +1,5 @@
 import { populateRestaurants, request, getRestaurants_indexdb } from './indexdb'
+import L from 'leaflet'
 
 /**
  * Common database helper functions.
