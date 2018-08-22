@@ -41,7 +41,7 @@ export const responsiveFigureElement = (className, restaurant) => {
   image.className = className;
   image.src = `${imgUrl}-300.jpg`;
   image.tabIndex = 0;
-  image.alt = restaurant.alternate;
+  image.alt = restaurant.alternate ? restaurant.alternate : `Image of ${restaurant.name} Restaurant`;
 
   picture.append(src800);
   picture.append(src500);
